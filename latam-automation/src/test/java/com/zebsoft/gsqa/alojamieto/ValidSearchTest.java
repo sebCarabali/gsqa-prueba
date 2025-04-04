@@ -1,4 +1,4 @@
-package com.zebsoft.gsqa;
+package com.zebsoft.gsqa.alojamieto;
 
 import java.time.LocalDate;
 
@@ -6,11 +6,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.microsoft.playwright.Page;
 import com.zebsoft.gsqa.factories.PlaywrightFactory;
 import com.zebsoft.gsqa.pages.HomePage;
 
-public class AlojamientoSearchValidationTest {
+public class ValidSearchTest {
+
     HomePage homePage;
 
     @BeforeClass
@@ -18,31 +18,21 @@ public class AlojamientoSearchValidationTest {
         homePage = new HomePage();
     }
 
-    //@Test
-    public void verifyEmptyDestinationErrorMessage() {
-        homePage.navigate("https://www.latamairlines.com/co/es");
-        
-        homePage.clickHotelTab();
-        
-        homePage.clickSearchButton();
-
-        homePage.verifyErrorMessageVisible();
-    }
-
-
-    @Test
+    @Test(priority = 1)
     public void verifySearchWithValidDestination() {
         homePage.navigate("https://www.latamairlines.com/co/es");
         
+        homePage.waitForTimeout(500);
+
         homePage.clickHotelTab();
         
-        homePage.enterDestination("Cartagena", "Colombia");
+        homePage.enterDestination("Bogotá", "Colombia");
 
-        homePage.setStartDate(LocalDate.now());
+        homePage.setStartDate(LocalDate.now().plusDays(7));
 
         homePage.waitForTimeout(500);
 
-        homePage.setEndDate(LocalDate.now().plusDays(1));   
+        homePage.setEndDate(LocalDate.now().plusDays(14));   
 
         homePage.clickSearchButton();
 
