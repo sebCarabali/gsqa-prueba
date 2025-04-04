@@ -12,16 +12,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
         <selenium.version>4.8.0</selenium.version>
+        <webdrivermanager.version>5.6.3</webdrivermanager.version>
         <testng.version>7.7.1</testng.version>
     </properties>
 
   <dependencies>
-    <!-- Selenium WebDriver -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
 
         <!-- TestNG -->
         <dependency>
@@ -31,12 +26,25 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Playwright -->
+        <dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version>1.40.0</version>
+        </dependency>
+
         <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.3.2</version>
+            <version>5.6.3</version>
         </dependency>
+  
+    <dependency>
+      <groupId>io.github.tmcreative1</groupId>
+      <artifactId>playwright-remote</artifactId>
+      <version>1.15</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -51,5 +59,14 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <testResources>
+        <testResource>
+            <directory>src/test/resources</directory>
+            <includes>
+                <include>**/*.exe</include>  <!-- Para Windows -->
+            </includes>
+        </testResource>
+    </testResources>
     </build>
 </project>
